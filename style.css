@@ -1,0 +1,141 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,600;0,700;1,300&display=swap');
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+:root {
+  --bg-color: #E1E5EA;
+  --color-primary: #A7BBC7;
+  --color-second: #DA7F8F;
+}
+body {
+  background-color: var(--bg-color);
+  font-family: 'Montserrat', sans-serif;
+}
+.header {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+}
+.cta {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  margin: auto;
+  text-decoration: none;
+  background-color: var(--color-primary);
+  color: white;
+  font-weight: 600;
+  width: 200px;
+  height: 50px;
+  border-radius: 5px;
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+}
+.cta::after {
+  content: "";
+  width: 100%;
+  position: absolute;
+  z-index: -1;
+  top: 0;
+  left: 0;
+  left: calc(-100% - 60px);
+  border-bottom: 50px solid #DA7F8F;
+  border-right: 50px solid transparent;
+  transition: .5s ease-in-out all;
+}
+.cta:hover::after {
+  left: 0;
+}
+.modal {
+  position: fixed;
+  background-color: #333;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  display: flex;
+  z-index: 1;
+  --opacity: 0;
+  --pointer: none;
+  opacity: var(--opacity);
+  pointer-events: var(--pointer);
+  transition: opacity .5s;
+}
+.modal:target {
+  opacity: 1;
+  pointer-events: unset;
+}
+.modal__container {
+  background-color: var(--bg-color);
+  width: 90%;
+  margin: auto;
+  max-width: 600px;
+  max-height: 700px;
+  text-align: center;
+  padding: 1rem 3.5rem 3.5rem;
+  border-radius: 10px;
+  overflow: hidden;
+}
+.modal:target .modal__container {
+  animation: show 1s .5s backwards;
+}
+@keyframes show {
+  0% {
+    transform: translateY(-150vh);
+  }
+}
+.modal__picture {
+  width: 60%;
+  margin: 0 auto;
+  max-width: 400px;
+}
+.modal:target .modal__picture {
+  animation: scale .5s 1.5s backwards;
+}
+@keyframes scale {
+  0% {
+    transform: scale(0);
+  }
+}
+.modal__img {
+  display: block;
+  width: 100%;
+}
+.modal__title {
+  font-weight: 600;
+}
+.modal:target .modal__title {
+  animation: translate .3s 2s backwards;
+}
+@keyframes translate {
+  0% {
+    transform: translateX(-500px);
+  } 
+}
+.modal__title--bold {
+  font-weight: 700;
+  color: var(--color-second);
+}
+.modal__paragraph {
+  margin: 1rem 0 1rem;
+}
+.modal__close {
+  background: none;
+  border: 2px solid #DA7F8F;
+  color: var(--color-second);
+}
+.modal__close:hover {
+  color: white;
+  transition: .5s ease-in-out;
+}
+@media (max-width:425px) {
+  .modal__container {
+    padding: 2.5rem 1.5rem;
+  }
+  .modal__title {
+    font-size: 1.2rem;
+  }
+}
